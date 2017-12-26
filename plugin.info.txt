@@ -1,0 +1,7 @@
+base   signaturebutton
+author Marcos Menegazzo
+email  marcos.menegazzo@gmail.com
+date   2017-12-22
+name   signaturebutton plugin
+desc   Allows users to sign a page without editing it
+url    https://github.com/robotdance/dokuwiki-signaturebutton
