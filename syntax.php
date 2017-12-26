@@ -14,19 +14,19 @@ class syntax_plugin_signaturebutton extends DokuWiki_Syntax_Plugin {
      * @return string Syntax mode type
      */
     public function getType() {
-        return 'FIXME: container|baseonly|formatting|substition|protected|disabled|paragraphs';
+        return 'substition';
     }
     /**
      * @return string Paragraph type
      */
     public function getPType() {
-        return 'FIXME: normal|block|stack';
+        return 'block';
     }
     /**
      * @return int Sort order - Low numbers go before high numbers
      */
     public function getSort() {
-        return FIXME;
+        return 0;
     }
 
     /**
@@ -35,8 +35,8 @@ class syntax_plugin_signaturebutton extends DokuWiki_Syntax_Plugin {
      * @param string $mode Parser mode
      */
     public function connectTo($mode) {
-        $this->Lexer->addSpecialPattern('<FIXME>',$mode,'plugin_signaturebutton');
-//        $this->Lexer->addEntryPattern('<FIXME>',$mode,'plugin_signaturebutton');
+        $this->Lexer->addSpecialPattern('<signhere>',$mode,'plugin_signaturebutton');
+        //$this->Lexer->addEntryPattern('<FIXME>',$mode,'plugin_signaturebutton');
     }
 
 //    public function postConnect() {
@@ -54,7 +54,7 @@ class syntax_plugin_signaturebutton extends DokuWiki_Syntax_Plugin {
      */
     public function handle($match, $state, $pos, Doku_Handler $handler){
         $data = array();
-
+        $data['caption'] = 'Sign this document';
         return $data;
     }
 
@@ -68,7 +68,8 @@ class syntax_plugin_signaturebutton extends DokuWiki_Syntax_Plugin {
      */
     public function render($mode, Doku_Renderer $renderer, $data) {
         if($mode != 'xhtml') return false;
-
+        $r = $renderer;
+        $r->doc = "<button type='submit'>".$data['caption']."</button>"
         return true;
     }
 }
