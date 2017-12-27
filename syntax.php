@@ -26,7 +26,7 @@ class syntax_plugin_signaturebutton extends DokuWiki_Syntax_Plugin {
      * @return int Sort order - Low numbers go before high numbers
      */
     public function getSort() {
-        return 0;
+        return 255;
     }
 
     /**
@@ -35,13 +35,8 @@ class syntax_plugin_signaturebutton extends DokuWiki_Syntax_Plugin {
      * @param string $mode Parser mode
      */
     public function connectTo($mode) {
-        $this->Lexer->addSpecialPattern('<signhere>',$mode,'plugin_signaturebutton');
-        //$this->Lexer->addEntryPattern('<FIXME>',$mode,'plugin_signaturebutton');
+        $this->Lexer->addSpecialPattern('<signhere>', $mode, 'plugin_signaturebutton');
     }
-
-//    public function postConnect() {
-//        $this->Lexer->addExitPattern('</FIXME>','plugin_signaturebutton');
-//    }
 
     /**
      * Handle matches of the signaturebutton syntax
@@ -54,7 +49,7 @@ class syntax_plugin_signaturebutton extends DokuWiki_Syntax_Plugin {
      */
     public function handle($match, $state, $pos, Doku_Handler $handler){
         $data = array();
-        $data['caption'] = 'Sign this document';
+        $data['caption'] = "Sign this document"; // $this->getLang('signaturebutton_caption'); did not worked for me, missing something? wrong place?
         return $data;
     }
 
@@ -66,10 +61,10 @@ class syntax_plugin_signaturebutton extends DokuWiki_Syntax_Plugin {
      * @param array          $data      The data from the handler() function
      * @return bool If rendering was successful.
      */
-    public function render($mode, Doku_Renderer $renderer, $data) {
+    public function render($mode, Doku_Renderer &$renderer, $data) {
         if($mode != 'xhtml') return false;
         $r = $renderer;
-        $r->doc = "<button type='submit'>".$data['caption']."</button>"
+        $r->doc .= "<button type='submit'>".$data['caption']."</button>";
         return true;
     }
 }
