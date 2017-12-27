@@ -8,6 +8,6 @@
 // keys need to match the config setting name
 // $lang['fixme'] = 'FIXME';
 
-$lang['signaturebutton_caption']  = 'Sign this document';
+$lang['signaturebutton_caption']  = 'Assinar este documento';
 
 //Setup VIM: ex: et ts=4 :
